@@ -7,7 +7,6 @@ output: html_document
 library(tidyverse)
 library(AmesHousing)
 library(tidymodels)
-library(tune)
 
 ames <- make_ames() %>% 
   dplyr::select(-matches("Qu"))
@@ -28,7 +27,9 @@ fit_split <- function(formula, model, split, ...) {
 Write a pipe that creates a learner that uses `lm()` to fit a linear regression. Save it as `lm_spec` and look at the object. What does it return?
 
 ```{r}
-
+lm_spec <- linear_reg() %>% # Pick linear regression
+   set_engine(engine = "lm") # set engine
+lm_spec
 ```
 
 # Your Turn 2
